@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_pro/product_store/home_view.dart';
+import 'package:store_pro/product_store/view/home_view.dart';
 import 'package:store_pro/themes/styles.dart';
 
 class App extends StatelessWidget {
