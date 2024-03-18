@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:store_pro/product_store/model/icecream.dart';
 
 import '../../themes/styles.dart';
@@ -27,7 +26,7 @@ class CartItem extends StatelessWidget {
           style: Styles.productRowItemPrice,
         ),
         trailing: Text(
-          '₹ ${product.price * quantity}',
+          '₹ ${(product.price * quantity).toStringAsExponential(2)}',
           style: Styles.productRowItemName,
         ),
       ),

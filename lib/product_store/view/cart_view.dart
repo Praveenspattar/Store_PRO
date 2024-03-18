@@ -229,7 +229,7 @@ class _CartViewState extends State<CartView> {
                 ],
               ),
               const Divider(),
-              //if(value.productsInCart.isNotEmpty) ...[
+              if(value.productsInCart.isNotEmpty) ...[
                 ListView.builder(
                   itemBuilder: (context, index) {
                     return CartItem(
@@ -253,7 +253,7 @@ class _CartViewState extends State<CartView> {
                         style: Styles.productRowItemPrice,
                       ),
                       Text(
-                        '₹ ${value.shippingCost} + ${value.tax}',
+                        '₹ ${value.shippingCost.toStringAsFixed(2)} + ${value.tax.toStringAsFixed(2)}',
                         style: Styles.productRowItemPrice,
                       )
                     ],
@@ -269,28 +269,31 @@ class _CartViewState extends State<CartView> {
                         style: Styles.productRowItemName,
                       ),
                       Text(
-                        '₹ ${value.totalCost}',
+                        '₹ ${value.totalCost.toStringAsFixed(2)}',
                         style: Styles.productRowItemName,
                       )
                     ],
                   ),
                 ),
                 const Divider(),
-                ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      value.clearCart();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Order Placed Successfully')
-                          ),
-                      );
-                    }
-                  },
-                  child: const Text('Place Order'),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        value.clearCart();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Order Placed Successfully')
+                            ),
+                        );
+                      }
+                    },
+                    child: const Text('Place Order'),
+                  ),
                 )
-              //],
+              ],
             ]
           );
         },

@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.1.2
   ionicons: ^0.2.2
   date_formatter: ^0.0.4
+  velocity_x: ^4.1.1
 
 dev_dependencies:
   flutter_test:
