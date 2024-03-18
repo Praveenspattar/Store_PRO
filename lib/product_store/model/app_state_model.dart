@@ -8,6 +8,13 @@ double _shippingCostPerItem = 10;
 
 class AppStateModel extends ChangeNotifier {
 
+  int currentIndex = 0;
+
+  void changeIndex(int index) {
+    currentIndex = index;
+    notifyListeners();
+  }
+
   List<Icecream> _availableProducts = [];
 
   final _productsInCart = <int, int>{};
@@ -15,10 +22,10 @@ class AppStateModel extends ChangeNotifier {
   Map<int,int> get productsInCart {
     return Map.from(_productsInCart);
   }
-
-  // List<Product> get availableProducts {
-  //   return List.from(_availableProducts);
-  // }
+  
+  Icecream getProductById(int id){
+    return _availableProducts.firstWhere((element) => element.id == id);
+  }
 
   List<Icecream> getproducts() {
     return _availableProducts;

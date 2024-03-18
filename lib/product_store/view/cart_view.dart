@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:store_pro/product_store/model/app_state_model.dart';
+import 'package:store_pro/product_store/widgets/cart_item.dart';
 import 'package:store_pro/themes/styles.dart';
 import 'package:intl/intl.dart';
 
@@ -196,37 +197,101 @@ class _CartViewState extends State<CartView> {
         builder: (context, value, child) {
           return ListView(
             children: [
-              ExpansionTile(title: Text("Address Details"),
-              children:[
-                Form(
-                  key: formKey,
-                  child: Column(
+              ExpansionTile(title: const Text("Address Details"),
+                children:[
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: _buildName(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: _buildEmail(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: _buildMobile(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: _buildAddress(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: _buildTimePicker(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(),
+              //if(value.productsInCart.isNotEmpty) ...[
+                ListView.builder(
+                  itemBuilder: (context, index) {
+                    return CartItem(
+                      product: value.getProductById(
+                        value.productsInCart.keys.toList()[index]),
+                      quantity: value.productsInCart.values.toList()[index],
+                    );
+                  },
+                  itemCount: value.productsInCart.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _buildName(),
+                      const Text(
+                        'Shipping + Tax',
+                        style: Styles.productRowItemPrice,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _buildEmail(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _buildMobile(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _buildAddress(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _buildTimePicker(),
-                      ),
+                      Text(
+                        '₹ ${value.shippingCost} + ${value.tax}',
+                        style: Styles.productRowItemPrice,
+                      )
                     ],
                   ),
                 ),
-              ])
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total',
+                        style: Styles.productRowItemName,
+                      ),
+                      Text(
+                        '₹ ${value.totalCost}',
+                        style: Styles.productRowItemName,
+                      )
+                    ],
+                  ),
+                ),
+                const Divider(),
+                ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      value.clearCart();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Order Placed Successfully')
+                          ),
+                      );
+                    }
+                  },
+                  child: const Text('Place Order'),
+                )
+              //],
+            ]
           );
         },
       ),

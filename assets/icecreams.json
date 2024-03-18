@@ -1,9 +1,9 @@
 {
     "icecreams": [
         {
-            "id": "1",
+            "id": 0,
             "category": "classic",
-            "featured": "false",
+            "featured": false,
             "flavor": "Vanilla",
             "description": "Classic and creamy vanilla flavour loved by everyone",
             "toppings": ["chocolate chips", "whipped cream", "sprinkles"],
@@ -16,9 +16,9 @@
             ]
         },
         {
-            "id": "2",
+            "id": 1,
             "category": "chocolate",
-            "featured": "false",
+            "featured": false,
             "flavor": "Chocolate",
             "description": "Rich and indulgent chocolate flavor for chocolate lovers",
             "toppings": ["chocolate sauce", "whipped cream", "chocolate shavings"],
@@ -31,9 +31,9 @@
             ]
         },
         {
-            "id": "3",
+            "id": 2,
             "category": "fruit",
-            "featured": "false",
+            "featured": false,
             "flavor": "Strawberry",
             "description": "Sweet and fruity strawberry goodness with real fruit chunks",
             "toppings": ["fresh strawberries", "whipped cream", "sprinkles"],
@@ -46,9 +46,9 @@
             ]
         },  
         {
-            "id": "4",
+            "id": 3,
             "category": "cupcake",
-            "featured": "false",
+            "featured": false,
             "flavor": "Caramel Cupcake",
             "description": "Delicious cupcake flavor with swirls of caramel",
             "toppings": ["caramel sauce", "cupcake pieces", "whipped cream"],
@@ -61,9 +61,9 @@
             ]
         },
         {
-            "id": "5",
+            "id": 4,
             "category": "sorbet",
-            "featured": "false",
+            "featured": false,
             "flavor": "Mango Sorbet",
             "description": "Refreshing and tropical mango sorbet for a fruity delight",
             "toppings": ["fresh mango slices", "mint leaves"],
@@ -76,9 +76,9 @@
             ]
         },
         {
-            "id": "6",
+            "id": 5,
             "category": "nutty",
-            "featured": "false",
+            "featured": false,
             "flavor": "Pistachio",
             "description": "Nutty and creamy pistachio flavor with real pistachio chunks",
             "toppings": ["chopped pistachios", "whipped cream", "chocolate drizzle"],

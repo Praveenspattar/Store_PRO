@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:store_pro/app/app.dart';
 
+import 'product_store/model/app_state_model.dart';
+
 void main() {
-  runApp(const App());
+  runApp(ChangeNotifierProvider(
+      create: (context) => AppStateModel(), // Provide an instance of AppStateModel
+      child: const App(),
+    ),);
 }
 
 // class MyApp extends StatelessWidget {

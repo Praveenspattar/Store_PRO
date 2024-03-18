@@ -4,18 +4,34 @@ import 'package:provider/provider.dart';
 import 'package:store_pro/product_store/model/app_state_model.dart';
 import 'package:store_pro/product_store/view/cart_view.dart';
 import 'package:store_pro/product_store/view/icecream_view.dart';
+import 'package:store_pro/product_store/view/search_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<AppStateModel>(context);
     return Scaffold(
-      body: ChangeNotifierProvider(
-        create: (context) => AppStateModel(),
-        child: const CartView()
+      //body: ChangeNotifierProvider(
+        //create: (context) => AppStateModel(),
+        //child: const CartView()
+      //),
+      body: SafeArea(
+        child: IndexedStack(
+          index: model.currentIndex,
+          children: const [
+            IcecreamView(),
+            SearchView(),
+            CartView(),
+          ],
+        )
       ),
       bottomNavigationBar: NavigationBar(
+        selectedIndex: model.currentIndex,
+        onDestinationSelected: (value) {
+          model.changeIndex(value);
+        },
         destinations: const [
           NavigationDestination(
             icon: Icon(Ionicons.ice_cream_outline),
