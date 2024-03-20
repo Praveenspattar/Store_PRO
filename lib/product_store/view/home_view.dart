@@ -13,10 +13,6 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<AppStateModel>(context);
     return Scaffold(
-      //body: ChangeNotifierProvider(
-        //create: (context) => AppStateModel(),
-        //child: const CartView()
-      //),
       body: SafeArea(
         child: IndexedStack(
           index: model.currentIndex,
